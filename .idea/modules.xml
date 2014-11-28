@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/FreeHandPolygonLib/FreeHandPolygonLib.iml" filepath="$PROJECT_DIR$/FreeHandPolygonLib/FreeHandPolygonLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FreeHandPolygonSample.iml" filepath="$PROJECT_DIR$/FreeHandPolygonSample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sample.iml" filepath="$PROJECT_DIR$/Sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+    </modules>
+  </component>
+</project>
+
