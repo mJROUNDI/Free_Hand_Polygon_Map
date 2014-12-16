@@ -30,23 +30,15 @@ To get the polygon drawn by user you just have to set OnPolygonDrawListener to t
 ``` 
 To customize more your drawer
 ``` java
-        Paint paint=new Paint();
-        paint.setAntiAlias(true);
-        paint.setStrokeWidth(2);
-        paint.setColor(Color.BLUE);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        
-        
+
         mFreeHandDrawer = new FreeHandDrawer
                           .Builder(mapFragment)
                           .tolerance(0.0)//tolerance needed to reduce number of points default value 0.0 (no reduction)
                           .fillColor(0x220000FF)//color used to fill your polygon 0x220000FF is the default value
                           .lockZoomWhenDrawing(false)//when true disable zooming of your MapFragment (Only in draw mode)
                           .strokeColor(Color.BLUE)///color stroke for polygon 0xFF0000FF is the default value
-                          .strokeWidth(2)
-                          .pathStyle(paint)
-                           .build();
+                          .strokeWidth(2)//width of the polygon 2 is ths default value
+                          .build();
 ``` 
 
 Licence
