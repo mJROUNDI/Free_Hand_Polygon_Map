@@ -2,7 +2,6 @@ package mjroundi.com.sample;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,9 +26,10 @@ public class FreeHandActivity extends Activity {
         setContentView(R.layout.activity_free_hand);
 
         MapFragment mapFragment = ((MapFragment) getFragmentManager().findFragmentById(R.id.mapFragment));
-
-        //Creating the drawer
-        mFreeHandDrawer = new FreeHandDrawer
+        //Creating the drawer simply
+        mFreeHandDrawer =  new FreeHandDrawer.Builder(mapFragment).build();
+        // or if you want a custom one
+/*        mFreeHandDrawer = new FreeHandDrawer
                 .Builder(mapFragment)
                 .tolerance(0.0)//tolerance needed to reduce number of points default value 0.0 (no reduction)
                 .fillColor(0x220000FF)//color used to fill your polygon 0x220000FF is the default value
@@ -37,6 +37,7 @@ public class FreeHandActivity extends Activity {
                 .strokeColor(Color.BLUE)///color stroke for polygon 0xFF0000FF is the default value
                 .strokeWidth(2)//width of the polygon 2 is ths default value
                 .build();
+*/
         //Set listener OnPolygonDrawListener
         mFreeHandDrawer.setOnPolygonDrawListener(new OnPolygonDrawListener() {
             @Override
