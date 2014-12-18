@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Sample</string>
+    <string name="app_name">Free Hand Polygon Map Sample</string>
     <string name="action_tolerance">DouglasPeucker Tolerance</string>
     <string name="draw_string">Draw</string>
 

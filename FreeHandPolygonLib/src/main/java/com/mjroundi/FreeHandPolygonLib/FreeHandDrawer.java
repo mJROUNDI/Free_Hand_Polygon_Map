@@ -43,6 +43,14 @@ public class FreeHandDrawer {
     private TouchableLayer mTouchView;
 
     /**
+     * Setter for DouglasPuckerTolerance
+     * @param douglasPeuckerTolerance value of the new tolerance
+     */
+    public void setDouglasPeuckerTolerance(Double douglasPeuckerTolerance) {
+        this.douglasPeuckerTolerance = douglasPeuckerTolerance;
+    }
+
+    /**
      * constructor FreeHandDrawer
      * calls injectDrawer
      * @param builder of FreeHandDrawer
@@ -181,9 +189,9 @@ public class FreeHandDrawer {
 
         /**
          * @param mapFragment the MapFragment in witch polygons will be drawn
-         * @return Builder
          */
 		public Builder(MapFragment mapFragment) {
+            if (mapFragment==null) throw new IllegalArgumentException("mapFragment can't be null");
 			this.mapFragment=mapFragment;
 		}
 
@@ -212,7 +220,6 @@ public class FreeHandDrawer {
          * @param fillColor  the fill color of the polygon
          * @return Builder
          */
-
 		public Builder fillColor(int fillColor) {
 		    this.fillColor = fillColor;
 			return this;
@@ -236,7 +243,7 @@ public class FreeHandDrawer {
          * @return Builder
          */
 		public Builder pathStyle(Paint paint) {
-		    if (paint == null) throw new IllegalArgumentException("polygonOptions must not be null ");
+		    if (paint == null) throw new IllegalArgumentException("paint can't be null ");
 			this.paint = paint;
 			return this;
 		}
@@ -260,5 +267,7 @@ public class FreeHandDrawer {
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeJoin(Paint.Join.ROUND);
         }
-	}
+
+
+    }
 }

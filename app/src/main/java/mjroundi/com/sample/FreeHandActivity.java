@@ -2,6 +2,7 @@ package mjroundi.com.sample;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,13 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.NumberPicker;
+import android.widget.Toast;
 import android.widget.ToggleButton;
+import com.google.android.gms.maps.model.Polygon;
 import com.mjroundi.FreeHandPolygonLib.FreeHandDrawer;
 import com.google.android.gms.maps.MapFragment;
+import com.mjroundi.FreeHandPolygonLib.OnPolygonDrawListener;
 
 public class FreeHandActivity extends Activity {
-    private MapFragment mMapFragment;
-    private ToggleButton mtbDraw;
     private FreeHandDrawer mFreeHandDrawer;
 
     @Override
@@ -24,13 +26,30 @@ public class FreeHandActivity extends Activity {
 
         setContentView(R.layout.activity_free_hand);
 
-        mMapFragment = ((MapFragment) getFragmentManager().findFragmentById(R.id.mapFragment));
+        MapFragment mapFragment = ((MapFragment) getFragmentManager().findFragmentById(R.id.mapFragment));
+
         //Creating the drawer
-        mFreeHandDrawer = new FreeHandDrawer.Builder(mMapFragment).tolerance(0.0)
+        mFreeHandDrawer = new FreeHandDrawer
+                .Builder(mapFragment)
+                .tolerance(0.0)//tolerance needed to reduce number of points default value 0.0 (no reduction)
+                .fillColor(0x220000FF)//color used to fill your polygon 0x220000FF is the default value
+                .lockZoomWhenDrawing(false)//when true disable zooming of your MapFragment (Only in draw mode)
+                .strokeColor(Color.BLUE)///color stroke for polygon 0xFF0000FF is the default value
+                .strokeWidth(2)//width of the polygon 2 is ths default value
                 .build();
+        //Set listener OnPolygonDrawListener
+        mFreeHandDrawer.setOnPolygonDrawListener(new OnPolygonDrawListener() {
+            @Override
+            public void OnDraw(Polygon polygon) {
+                Toast.makeText(FreeHandActivity.this,
+                                "Polygon contains "+polygon.getPoints().size()+" Points",
+                                Toast.LENGTH_LONG)
+                                .show();
+            }
+        });
         //Toggle for switching to drawing mode
-        mtbDraw = (ToggleButton) findViewById(R.id.tbDraw);
-        mtbDraw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        ToggleButton tbDraw = (ToggleButton) findViewById(R.id.tbDraw);
+        tbDraw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -55,14 +74,13 @@ public class FreeHandActivity extends Activity {
         final NumberPicker numberPickerTolerance = (NumberPicker) dialog.findViewById(R.id.numberPicker_tolerance);
         numberPickerTolerance.setMaxValue(10);
         numberPickerTolerance.setMinValue(0);
-        //numberPickerTolerance.setWrapSelectorWheel(false);
+
+        numberPickerTolerance.setValue(mFreeHandDrawer.getTolerance().intValue());
 
         buttonSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mFreeHandDrawer = new FreeHandDrawer.Builder(mMapFragment)
-                        .tolerance((double)numberPickerTolerance.getValue())
-                        .build();
+                mFreeHandDrawer.setDouglasPeuckerTolerance((double)numberPickerTolerance.getValue());
                 dialog.dismiss();
             }
         });
