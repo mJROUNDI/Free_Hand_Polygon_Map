@@ -31,8 +31,7 @@ To get the polygon drawn by user you just have to set OnPolygonDrawListener to t
 To customize more your drawer
 ``` java
 
-        mFreeHandDrawer = new FreeHandDrawer
-                          .Builder(mapFragment)
+        mFreeHandDrawer = new FreeHandDrawer.Builder(mapFragment)
                           .tolerance(0.0)//tolerance needed to reduce number of points default value 0.0 (no reduction)
                           .fillColor(0x220000FF)//color used to fill your polygon 0x220000FF is the default value
                           .lockZoomWhenDrawing(false)//when true disable zooming of your MapFragment (Only in draw mode)
