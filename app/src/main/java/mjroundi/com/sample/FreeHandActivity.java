@@ -28,7 +28,7 @@ public class FreeHandActivity extends Activity {
         MapFragment mapFragment = ((MapFragment) getFragmentManager().findFragmentById(R.id.mapFragment));
         //Creating the drawer simply
         mFreeHandDrawer =  new FreeHandDrawer.Builder(mapFragment).build();
-        // or if you want a custom one
+        // or if you want a custom drawer
 /*        mFreeHandDrawer = new FreeHandDrawer
                 .Builder(mapFragment)
                 .tolerance(0.0)//tolerance needed to reduce number of points default value 0.0 (no reduction)
