@@ -37,7 +37,7 @@ To customize more your drawer
                           .fillColor(0x220000FF)//color used to fill your polygon 0x220000FF is the default value
                           .lockZoomWhenDrawing(false)//when true disable zooming of your MapFragment (Only in draw mode)
                           .strokeColor(Color.BLUE)///color stroke for polygon 0xFF0000FF is the default value
-                          .strokeWidth(2)//width of the polygon 2 is ths default value
+                          .strokeWidth(2)//stroke width of the polygon 2 is ths default value
                           .build();
 ``` 
 
